@@ -13,8 +13,6 @@ rename TradeRouteLinesFotR.xml TradeRouteLines.xml
 cd ..\Scripts\Library
 rename GameConstants.lua GameConstantsICW.lua
 rename GameConstantsFotR.lua GameConstants.lua
-rename DisplayManager.lua DisplayManagerICW.lua
-rename DisplayManagerFotR.lua DisplayManager.lua
 cd ..\..\Art\Textures
 rename SPLASH.DDS SPLASHICW.DDS
 rename SPLASHFOTR.DDS SPLASH.DDS

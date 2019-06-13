@@ -165,8 +165,6 @@
 											Parameter_Type = "U_Ground_Turbolaser_Tower"}))
 		*
 		(1.0 - Function_May_Lose_Land_Control_Game.Evaluate)
-		*
-		(1.0 - Variable_Target.IsContestable)
 	</Should_Destroy_Structure>
 
 	<Should_Destroy_Turbolaser>
@@ -1026,6 +1024,7 @@
 										Parameter_Type = "PA_Capital",
 										Parameter_Type = "Maldrood_Capital",
 										Parameter_Type = "Eriadu_Capital",
+										Parameter_Type = "Yevetha_Capital",
 										Parameter_Type = "CSA_Capital",
 										Parameter_Type = "U_Ground_Palace"} == 0.0)
 				+

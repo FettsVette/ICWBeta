@@ -82,6 +82,8 @@
 		+
 		Variable_Target.IsConnectedTo {Parameter_Faction = "SsiRuuvi_Imperium", Parameter_Attenuator = 0.0}
 		+
+		Variable_Target.IsConnectedTo {Parameter_Faction = "Yevetha", Parameter_Attenuator = 0.0}
+		+
 		Variable_Target.IsConnectedTo {Parameter_Faction = "Corporate_Sector", Parameter_Attenuator = 0.0}) > 0.0
 	</Is_Connected_To_Player>
 	
@@ -158,9 +160,5 @@
 		+ Variable_Target.HasStructure {Parameter_Type = "Ground_Empire_Hypervelocity_Gun"}
 		+ Variable_Target.HasStructure {Parameter_Type = "Ground_Pentastar_Hypervelocity_Gun"}
 	</Has_Planetary_Weapon>
-	
-	<MaxGroundbaseLevel>
-		Variable_Target.MaxStructureSlotsUnnormalized
-	</MaxGroundbaseLevel>
 	
 </Equations>

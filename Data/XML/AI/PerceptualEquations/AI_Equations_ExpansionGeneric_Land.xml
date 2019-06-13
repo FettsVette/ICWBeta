@@ -26,16 +26,18 @@
 		Variable_Self.IsFaction {Parameter_Faction = "EMPIRE"}
 		+
 		Variable_Target.Type.IsType {Parameter_Type = "Garrison_Bunker_Underworld" } *
-		Variable_Self.IsFaction {Parameter_Faction = "UNDERWORLD"}
+		Variable_Self.IsFaction {Parameter_Faction = "UNDERWORLD"})
 		+
-		Variable_Target.Type.IsType {Parameter_Type = "Garrison_Bunker_Pentastar" } *
-		(Variable_Self.IsFaction {Parameter_Faction = "Pirates"}
+		(Variable_Target.Type.IsType {Parameter_Type = "Garrison_Bunker_Pentastar" } *
+		Variable_Self.IsFaction {Parameter_Faction = "Pirates"}
 		+
 		Variable_Self.IsFaction {Parameter_Faction = "Hutts"}
 		+
 		Variable_Self.IsFaction {Parameter_Faction = "Pentastar"}
 		+
-		Variable_Self.IsFaction {Parameter_Faction = "Teradoc"}))
+		Variable_Self.IsFaction {Parameter_Faction = "Teradoc"}
+		+
+		Variable_Self.IsFaction {Parameter_Faction = "Yevetha"})
 	</Should_Garrison_Bunker>
 
 	<Should_Fire_Orbital_Bombardment>

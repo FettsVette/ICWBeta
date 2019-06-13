@@ -1,3 +1,126 @@
+-- Spawns units at all neutral or hostile owned planets in a list
+-- In: planet array in the form { ["Planet Name"] = {Faction_Table_Name, Combat Power} }
+function Spawn_At_Planets(planet_list)
+
+	local hostile = Find_Player("Hostile")
+	local neutral = Find_Player("Neutral")
+	local planet = nil
+	local planet_settings = {}
+	
+	-- Possible spawning units
+	-- Arranged as Unit_Table = {["Faction_Table_Name"] = {Find_Object_Type("Unit_Name), weight}}
+	Unit_Table = {
+	["Empire_Unit_Table"] = {
+					{Find_Object_Type("Generic_Venator"), 3, "Space"}
+					,{Find_Object_Type("Lancer_Frigate"), 5, "Space"}
+					,{Find_Object_Type("Escort_Carrier"), 5, "Space"}
+					,{Find_Object_Type("Carrack_Cruiser"), 5, "Space"}
+					,{Find_Object_Type("Strike_Cruiser"), 4, "Space"}
+					,{Find_Object_Type("Vindicator_Cruiser"), 4, "Space"}
+					,{Find_Object_Type("Katana_Dreadnaught_Empire"), 4, "Space"}
+					,{Find_Object_Type("Generic_Victory_Destroyer"), 3, "Space"}
+					,{Find_Object_Type("Generic_Victory_Destroyer_TWO"), 3, "Space"}
+					,{Find_Object_Type("Generic_Star_Destroyer_Two"), 1, "Space"}
+					,{Find_Object_Type("Generic_Star_Destroyer"), 1, "Space"}
+					,{Find_Object_Type("Generic_Dominator"), 1, "Space"}
+					,{Find_Object_Type("MTC_Sensor"), 2, "Space"}
+					,{Find_Object_Type("Imperial_Stormtrooper_Squad"), 5, "Land"}
+					,{Find_Object_Type("Imperial_EWEB_Squad"), 4, "Land"}
+					,{Find_Object_Type("Imperial_Anti_Infantry_Brigade"), 3, "Land"}
+					,{Find_Object_Type("Imperial_Heavy_Scout_Squad"), 2, "Land"}
+					,{Find_Object_Type("Imperial_Heavy_Assault_Company"), 1, "Land"}
+					
+				}
+				
+	,["NR_Unit_Table"] = {
+					{Find_Object_Type("Corona"), 5, "Space"}
+					,{Find_Object_Type("Sacheen"), 5, "Space"}
+					,{Find_Object_Type("Quaser"), 5, "Space"}
+					,{Find_Object_Type("Nebulon_B-2_Frigate"), 5, "Space"}
+					,{Find_Object_Type("Alliance_Assault_Frigate"), 4, "Space"}
+					,{Find_Object_Type("Dreadnaught_Rebel"), 4, "Space"}
+					,{Find_Object_Type("Endurance"), 1, "Space"}
+					,{Find_Object_Type("Corellian_Corvette"), 5, "Space"}
+					,{Find_Object_Type("Marauder_Missile_Cruiser"), 5, "Space"}
+					,{Find_Object_Type("Nebula"), 1, "Space"}
+					,{Find_Object_Type("Majestic"), 2, "Space"}
+					,{Find_Object_Type("Viscount"), 0.05, "Space"}
+					,{Find_Object_Type("MC90"), 1, "Space"}
+					,{Find_Object_Type("MC80B"), 1, "Space"}
+					,{Find_Object_Type("MC40a"), 3, "Space"}
+					,{Find_Object_Type("Rebel_Infantry_Squad"), 3, "Land"}
+					,{Find_Object_Type("Rebel_Tank_Buster_Squad"), 2, "Land"}
+					,{Find_Object_Type("Rebel_Light_Tank_Brigade"), 1, "Land"}
+					,{Find_Object_Type("Tracker_Company"), 1, "Land"}
+					}
+
+	,["EotH_Unit_Table"] = {
+					{Find_Object_Type("Chaf_Destroyer"), 3, "Space"}
+					,{Find_Object_Type("Kariek_Shieldship"), 5, "Space"}
+					,{Find_Object_Type("Syndic_Destroyer"), 5, "Space"}
+					,{Find_Object_Type("Phalanx_Destroyer"), 2, "Space"}
+					--,{Find_Object_Type("Intego_Destroyer"), 2, "Space"}
+					,{Find_Object_Type("Peltast"), 2, "Space"}
+					,{Find_Object_Type("Auriette_Carrier"), 4, "Space"}
+					,{Find_Object_Type("Asdoni"), 5, "Space"}
+					,{Find_Object_Type("Warlord"), 4, "Space"}
+					,{Find_Object_Type("Nuruodo"), 3, "Space"}
+					,{Find_Object_Type("Vigilance_Gunship"), 5, "Space"}
+					,{Find_Object_Type("Phalanx_Trooper_Squad"), 5, "Land"}
+					,{Find_Object_Type("EotH_Kirov_Brigade"), 2, "Land"}
+					,{Find_Object_Type("MMT_Brigade"), 3, "Land"}
+					,{Find_Object_Type("Flame_Tank_Company"), 1, "Land"}
+					,{Find_Object_Type("RFT_Brigade"), 2, "Land"}
+					,{Find_Object_Type("EotH_Scout_Brigade"), 3, "Land"}
+					,{Find_Object_Type("Gilzean_Brigade"), 1, "Land"}
+					}
+					
+	,["Eriadu_Unit_Table"] = {
+					{Find_Object_Type("Tartan_Patrol_Cruiser"), 5, "Space"}
+					,{Find_Object_Type("Carrack_Cruiser"), 4, "Space"}
+					,{Find_Object_Type("Strike_Cruiser"), 4, "Space"}
+					,{Find_Object_Type("Vindicator_Cruiser"), 4, "Space"}
+					,{Find_Object_Type("Generic_Victory_Destroyer"), 3, "Space"}
+					,{Find_Object_Type("Generic_Victory_Destroyer_TWO"), 3, "Space"}
+					,{Find_Object_Type("Generic_Star_Destroyer_Two"), 1, "Space"}
+					,{Find_Object_Type("Combat_Escort_Carrier"), 3, "Space"}
+					,{Find_Object_Type("Storm_Command_Team"), 1, "Land"}
+					,{Find_Object_Type("Delvardus_A6_Juggernaut_Company"), 1, "Land"}
+					,{Find_Object_Type("Delvardus_Army_Trooper_Squad"), 1, "Land"}
+					,{Find_Object_Type("Fortress_Company_Delvardus"), 1, "Land"}
+					,{Find_Object_Type("Delvardus_IDT_Squad"), 1, "Land"}
+					}
+					
+	,["Pentastar_Unit_Table"] = {
+					{Find_Object_Type("Raider_Pentastar"), 3, "Space"}
+					,{Find_Object_Type("Carrack_Cruiser"), 5, "Space"}
+					,{Find_Object_Type("Strike_Cruiser"), 4, "Space"}
+					,{Find_Object_Type("Vindicator_Cruiser"), 4, "Space"}
+					,{Find_Object_Type("Generic_Victory_Destroyer"), 3, "Space"}
+					,{Find_Object_Type("Generic_Victory_Destroyer_TWO"), 3, "Space"}
+					,{Find_Object_Type("Generic_Star_Destroyer_Two"), 1, "Space"}
+					,{Find_Object_Type("Combat_Escort_Carrier"), 3, "Space"}
+					,{Find_Object_Type("Shock_Soldier_Squad_Pentastar"), 1, "Land"}
+					,{Find_Object_Type("Pentastar_Army_Trooper_Squad"), 1, "Land"}
+					,{Find_Object_Type("Pentastar_Walker_Group"), 1, "Land"}
+					,{Find_Object_Type("Pentastar_Skiff_Group"), 1, "Land"}
+					,{Find_Object_Type("Pentastar_Speeder_Group"), 1, "Land"}
+					}
+	}
+	
+	DebugMessage("%s -- Initializing spawning", tostring(Script))
+	-- Find all planets
+		
+	-- Loop through planets once, spawning units
+	for planet, planet_settings in pairs(planet_list) do
+		-- Pirate unit spawns
+		if FindPlanet(planet).Get_Owner() == (neutral or hostile) then
+			--Spawns random units at the planet for the given faction and combat power per planet
+			Spawn_Random_Units(Unit_Table[planet_settings[1]], FindPlanet(planet), hostile, planet_settings[2], true)
+		end
+	end
+end
+
 -- Spawns units at all neutral or hostile planets in a GC
 function Spawn_At_All_Planets()
 
@@ -76,11 +199,9 @@ function Spawn_At_All_Planets()
 					,{Find_Object_Type("Carrack_Cruiser"), 4, "Space"}
 					,{Find_Object_Type("Strike_Cruiser"), 4, "Space"}
 					,{Find_Object_Type("Vindicator_Cruiser"), 4, "Space"}
-					,{Find_Object_Type("Generic_Imperial_II_Frigate"), 4, "Space"}
 					,{Find_Object_Type("Generic_Victory_Destroyer"), 3, "Space"}
 					,{Find_Object_Type("Generic_Victory_Destroyer_TWO"), 3, "Space"}
 					,{Find_Object_Type("Generic_Star_Destroyer_Two"), 1, "Space"}
-					,{Find_Object_Type("Generic_Star_Destroyer"), 1, "Space"}
 					,{Find_Object_Type("Combat_Escort_Carrier"), 3, "Space"}
 					,{Find_Object_Type("Storm_Command_Team"), 5, "Land"}
 					,{Find_Object_Type("Delvardus_A6_Juggernaut_Company"), 2, "Land"}
@@ -97,7 +218,6 @@ function Spawn_At_All_Planets()
 					,{Find_Object_Type("Generic_Victory_Destroyer"), 3, "Space"}
 					,{Find_Object_Type("Generic_Victory_Destroyer_TWO"), 3, "Space"}
 					,{Find_Object_Type("Generic_Star_Destroyer_Two"), 1, "Space"}
-					,{Find_Object_Type("Generic_Star_Destroyer"), 1, "Space"}
 					,{Find_Object_Type("Combat_Escort_Carrier"), 3, "Space"}
 					,{Find_Object_Type("Shock_Soldier_Squad_Pentastar"), 4, "Land"}
 					,{Find_Object_Type("Pentastar_Army_Trooper_Squad"), 5, "Land"}
@@ -105,55 +225,41 @@ function Spawn_At_All_Planets()
 					,{Find_Object_Type("Pentastar_Skiff_Group"), 4, "Land"}
 					,{Find_Object_Type("Pentastar_Speeder_Group"), 1, "Land"}
 					}
-				,{
-					{Find_Object_Type("Citadel_Cruiser_Squadron"), 4, "Space"}
-					,{Find_Object_Type("Gozanti_Cruiser_Squadron"), 5, "Space"}
-					,{Find_Object_Type("Recusant"), 4, "Space"}
-					,{Find_Object_Type("Generic_Victory_Destroyer"), 3, "Space"}
-					,{Find_Object_Type("Bulwark_I"), 3, "Space"}
-					,{Find_Object_Type("Invincible_Cruiser"), 1, "Space"}
-					,{Find_Object_Type("Espo_Squad"), 4, "Land"}
-					,{Find_Object_Type("Strikebreaker_Group"), 5, "Land"}
-					,{Find_Object_Type("JX40_Group"), 2, "Land"}
-					,{Find_Object_Type("SX20_Company"), 4, "Land"}
-					,{Find_Object_Type("X10_Group"), 1, "Land"}
-					}
 	}
 	
 	Groundbase_Table = {{
 					Find_Object_Type("E_Ground_Barracks"),
+					Find_Object_Type("E_Galactic_Turbolaser_Tower_Defenses"),
 					Find_Object_Type("E_Ground_Light_Vehicle_Factory"),					
 					Find_Object_Type("E_Ground_Heavy_Vehicle_Factory"),					
 				}
 				
 				,{
 					Find_Object_Type("R_Ground_Barracks"),
+					Find_Object_Type("R_Galactic_Turbolaser_Tower_Defenses"),
 					Find_Object_Type("R_Ground_Light_Vehicle_Factory"),
 					Find_Object_Type("R_Ground_Heavy_Vehicle_Factory"),
 					}
 
 				,{
 					Find_Object_Type("U_Ground_Barracks"),
-					Find_Object_Type("U_Ground_Droid_Works"),
-					Find_Object_Type("U_Ground_Vehicle_Factory"),
+					Find_Object_Type("U_Galactic_Turbolaser_Tower_Defenses"),
+					Find_Object_Type("U_Ground_Light_Vehicle_Factory"),
+					Find_Object_Type("U_Ground_Heavy_Vehicle_Factory"),
 					}
 					
 				,{
 					Find_Object_Type("P_Ground_Barracks"),
-					Find_Object_Type("P_Ground_Light_Vehicle_Factory"),
-					Find_Object_Type("P_Ground_Heavy_Vehicle_Factory"),
-					}
-				
-				,{
-					Find_Object_Type("P_Ground_Barracks"),
+					Find_Object_Type("P_Galactic_Turbolaser_Tower_Defenses"),
 					Find_Object_Type("P_Ground_Light_Vehicle_Factory"),
 					Find_Object_Type("P_Ground_Heavy_Vehicle_Factory"),
 					}
 					
 				,{
-					Find_Object_Type("C_Ground_Barracks"),
-					Find_Object_Type("C_Ground_Light_Vehicle_Factory"),
-					Find_Object_Type("C_Ground_Heavy_Vehicle_Factory"),
+					Find_Object_Type("P_Ground_Barracks"),
+					Find_Object_Type("P_Galactic_Turbolaser_Tower_Defenses"),
+					Find_Object_Type("P_Ground_Light_Vehicle_Factory"),
+					Find_Object_Type("P_Ground_Heavy_Vehicle_Factory"),
 					}
 				}
 						
@@ -175,7 +281,7 @@ function Spawn_At_All_Planets()
 			-- Scaled combat power based on planet value, reduced by if connected to a player, then increased or decreased by difficulty level
 			scaled_combat_power = 20000 * EvaluatePerception("GenericPlanetValue", hostile, planet) * (1.5 - EvaluatePerception("Is_Connected_To_Player", hostile, planet)) * Difficulty_Modifier
 			-- pick a random unit selection table
-			random_table_index = GameRandom.Free_Random(1, 6)
+			random_table_index = GameRandom.Free_Random(1, 5)
 			
 			DebugMessage("%s -- Attempting to spawn units at %s, from table number %s, combat power %s, difficulty modifier %s", tostring(Script), tostring(planet), tostring(random_table_index), tostring(scaled_combat_power), tostring(Difficulty_Modifier))
 			-- Spawns random units at the planet for the given faction and combat power per planet
@@ -222,7 +328,7 @@ function Spawn_Random_Units(unit_spawn_table, planet, player, total_combat_power
 	SpawnTableInsert(total_combat_power/10, 3, distribution_land, spawn_table, true)
 	
 	-- spawn the units!
-	SpawnGroundBase(player, planet, random_table_index)
+	SpawnGroundBase(player, planetm random_table_index)
 	SpawnListType(spawn_table, planet, player)
 	return
 end
@@ -319,17 +425,12 @@ function SpawnGroundBase(player, planet, index)
 	local base_table = Groundbase_Table[index]
 
 	local base_level = EvaluatePerception("MaxGroundbaseLevel", player, planet)
-	
-	if base_level == nil then
-		return
-	end
-	
 	if base_level < 1 then
 		return
 	else
 		local m = 0
 		while m < base_level/2 do
-		    building = base_table[GameRandom.Free_Random(1,3)]
+		    building = base_table[GameRandom.Free_Random(1,4)]
 			Spawn_Unit(building, planet, player)
 			m = m + 1
 		end
