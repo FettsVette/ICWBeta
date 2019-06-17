@@ -4,9 +4,9 @@
 	<HardPoint Name="HP_E11_Rifle_Skilled">
 
 		<Type>HARD_POINT_WEAPON_LASER</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 
 		<Model_To_Attach>Weapon_E11Rifle.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
@@ -34,9 +34,9 @@
 	<HardPoint Name="HP_E11_Rifle">
 
 		<Type>HARD_POINT_WEAPON_LASER</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 
 		<Model_To_Attach>Weapon_E11Rifle.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
@@ -64,9 +64,9 @@
 	<HardPoint Name="HP_E11_Rifle_Unskilled">
 
 		<Type>HARD_POINT_WEAPON_LASER</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 
 		<Model_To_Attach>Weapon_E11Rifle.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
@@ -94,9 +94,9 @@
 	<HardPoint Name="HP_Charric_Rifle">
 
 		<Type>HARD_POINT_WEAPON_LASER</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 
 		<Model_To_Attach>Weapon_CharricRifle.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
@@ -124,9 +124,9 @@
 	<HardPoint Name="HP_A280_Rifle">
 
 		<Type>HARD_POINT_WEAPON_LASER</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 
 		<Model_To_Attach>Weapon_A280.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
@@ -154,9 +154,9 @@
 	<HardPoint Name="HP_A280_Rifle_Skilled">
 
 		<Type>HARD_POINT_WEAPON_LASER</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 
 		<Model_To_Attach>Weapon_A280.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
@@ -184,9 +184,9 @@
 	<HardPoint Name="HP_Clone_DC15">
 
 		<Type>HARD_POINT_WEAPON_LASER</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 		
 		<Model_To_Attach>Weapon_DC15.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
@@ -214,8 +214,8 @@
 	<HardPoint Name="HP_Battledroid_Blaster">
 
 		<Type>HARD_POINT_WEAPON_LASER</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
 		<Health>1.0</Health>
 
 		<Fire_Bone_A>MuzzleA_00</Fire_Bone_A>
@@ -240,9 +240,9 @@
 	
 	<HardPoint Name="HP_Espo_Riot_Gun">
 		<Type> HARD_POINT_WEAPON_LASER </Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 
 		<Model_To_Attach>500_riot_gun.alo</Model_To_Attach>
 		<Attachment_Bone>ATTACH_HAND_RIGHT</Attachment_Bone> <!--Currently Espos are rigged differently -->
@@ -270,9 +270,9 @@
 	<HardPoint Name="HP_PLX">
 
 		<Type>HARD_POINT_WEAPON_TORPEDO</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 		
 		<Model_To_Attach>Weapon_plx.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
@@ -303,9 +303,9 @@
 	<HardPoint Name="HP_PLX_2M">
 
 		<Type>HARD_POINT_WEAPON_TORPEDO</Type>
-		<Is_Targetable>Yes</Is_Targetable>
-		<Is_Destroyable>Yes</Is_Destroyable>
-		<Health>1000.0</Health>
+		<Is_Targetable>No</Is_Targetable>
+		<Is_Destroyable>No</Is_Destroyable>
+		<!--<Health>1000.0</Health>-->
 
 		<Model_To_Attach>Weapon_plx-2m.alo</Model_To_Attach>
 		<Attachment_Bone>B_ATTACH_GUN</Attachment_Bone>
